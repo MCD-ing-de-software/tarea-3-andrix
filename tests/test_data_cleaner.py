@@ -186,6 +186,14 @@ class TestDataCleaner(unittest.TestCase):
         - Verificar que se lanza un KeyError (usar self.assertRaises)
         """
 
+        df = make_sample_df()
+        cleaner = DataCleaner()
+
+        # testeamos que lanza KeyError en columnas no existentes
+        with self.assertRaises(KeyError):
+            cleaner.remove_outliers_iqr(df, "columna_no_existente")
+
+
     def test_remove_outliers_iqr_raises_typeerror_for_non_numeric_column(self):
         """Test que verifica que el método remove_outliers_iqr lanza un TypeError cuando
         se llama con una columna que no es de tipo numérico.
@@ -195,6 +203,14 @@ class TestDataCleaner(unittest.TestCase):
         - Llamar a remove_outliers_iqr con una columna de texto (ej: "city")
         - Verificar que se lanza un TypeError (usar self.assertRaises)
         """
+
+        df = make_sample_df()
+        df["city"] = df["city"].astype("string")  # Asegurar que es tipo string
+        cleaner = DataCleaner()
+
+        # testeamos que lanza TypeError en columnas no numéricas
+        with self.assertRaises(TypeError):
+            cleaner.remove_outliers_iqr(df, "city")
 
 
 if __name__ == "__main__":
