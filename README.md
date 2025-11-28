@@ -42,3 +42,9 @@ pytest
 ```
 
 This will discover and execute all tests under the `tests/` directory.
+
+
+## Estudiante
+
+* Nestor Andres Moreira Quijano <nmoreiraq@estudiante.uc.cl>
+
